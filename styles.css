@@ -1,0 +1,227 @@
+/* Light Mode Background */
+body {
+    background: linear-gradient(120deg, #74ebd5, #acb6e5);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    transition: background 0.4s ease;
+}
+/* Customize the navbar */
+.navbar {
+    border-radius: 0 0 15px 15px;
+    background: linear-gradient(45deg, #74ebd5, #acb6e5);
+}
+
+.navbar-brand {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+/* Button for weather request */
+.btn-primary {
+    background-color: #3742fa;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #4a7bfd;
+}
+
+/* Dark Mode Customization */
+body.dark-mode .navbar {
+    background: linear-gradient(45deg, #2f3542, #747d8c);
+}
+
+body.dark-mode .navbar-brand {
+    color: #ffa502;
+}
+
+
+/* Weather App Container */
+.weather-app {
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    padding: 2rem;
+    max-width: 100%;
+    width: 100%;
+    margin: 2rem auto;
+    transition: background-color 0.3s ease;
+}
+
+/* Weather App Headline */
+.weather-app h1 {
+    font-size: 2.5rem;
+    color: #3742fa;
+}
+
+/* Form Input */
+.weather-app form input[type="text"] {
+    border: none;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    width: auto;  /* Compact width */
+    display: inline-block;
+}
+.weather-app form input[type="text"]:focus {
+    box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.15);
+    outline: none;
+}
+
+/* Button */
+.weather-app button {
+    border-radius: 12px;
+    background: #3742fa;
+    color: #fff;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+.weather-app button:hover {
+    background: #4a7bfd;
+}
+.get-weather-btn {
+    border: none;
+    border-radius: 12px;
+    padding: 1rem;
+    background: #3742fa;
+    color: #fff;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+/* Weather Info Styling */
+.weather-info h2 {
+    font-size: 3rem;
+    color: #ff4757;
+}
+.weather-info img {
+    width: 100px;
+    height: 100px;
+}
+.weather-info p.lead {
+    font-size: 1.3rem;
+    color: #57606f;
+}
+.weather-info div i {
+    font-size: 2.5rem;
+    color: #1e90ff;
+}
+.weather-info p {
+    font-size: 1.1rem;
+    color: #333;
+}
+.weather-info .details div {
+    color: #333;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background: linear-gradient(120deg, #2f3542, #747d8c);
+    color: #f1f2f6;
+}
+
+body.dark-mode .weather-app {
+    background-color: rgba(45, 52, 54, 0.9);
+    color: #dfe4ea;
+}
+
+body.dark-mode .weather-info h2 {
+    color: #ffa502;
+}
+
+body.dark-mode .weather-info p.lead {
+    color: #f1f2f6;
+}
+
+body.dark-mode .weather-info div i {
+    color: #00cec9;
+}
+
+body.dark-mode .weather-info .details div {
+    color: #f1f2f6;
+}
+
+body.dark-mode .weather-info p {
+    color: #dfe4ea;
+}
+
+/* About Section */
+.about-section {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 3rem;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+.about-section h2 {
+    color: #3742fa;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+.about-section p {
+    color: #57606f;
+}
+.about-section ul {
+    list-style: none;
+    padding: 0;
+    color: #333;
+}
+.about-section li {
+    color: #333;
+    margin: 0.5rem 0;
+}
+
+/* Dark Mode About Section - Black Background */
+body.dark-mode .about-section {
+    background-color: #000000;
+    color: #ffa502;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
+}
+
+body.dark-mode .about-section h2 {
+    color: #ffa502;
+}
+
+body.dark-mode .about-section p,
+body.dark-mode .about-section li {
+    color: #ffa502;
+}
+
+/* Footer Styling */
+footer {
+    background-color: #2d3436;
+    color: #b2bec3;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+    font-size: 0.9rem;
+}
+footer a {
+    color: #ffa502;
+    text-decoration: none;
+}
+footer a:hover {
+    color: #ff6b81;
+    text-decoration: underline;
+}
+
+/* Mode Toggle Icon Styling */
+.mode-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #f1f2f6;
+    transition: color 0.3s ease;
+}
+.mode-toggle {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            z-index: 1000;
+        }
+body.dark-mode .mode-toggle i {
+    color: #ffa502;
+}

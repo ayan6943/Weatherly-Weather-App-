@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App - Your Fourcast</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="bg-light min-h-screen d-flex flex-column" id="body">
+
+  
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid d-flex justify-content-between">
+            
+            <a class="navbar-brand" href="/">WeatherWiz</a> <!-- Replace with your app name or logo -->
+            
+            
+        </div>
+        <!-- Light/Dark Mode Toggle Icon -->
+        <div class="mode-toggle">
+            <i id="modeIcon" class="bi bi-sun-fill fs-2"></i>
+        </div>
+    </nav>
+
+    <!-- Weather App Container -->
+    <div class="weather-app card p-5 shadow-lg text-center rounded-3xl w-100 max-w-md mx-auto my-5">
+        <h1 class="display-4 mb-4">WeatherWiz</h1>
+
+        <!-- Compact Location Input Form -->
+        <form method="POST" action="/" class="mb-4">
+            <div class="location-input mx-auto">
+                <i class="bi bi-geo-alt-fill"></i>
+                <input type="text" id="city" name="city" placeholder="Enter city" required>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3 ">Get Weather</button>
+        </form>
+
+        <!-- Weather Data Section -->
+        {% if weather_data %}
+        <div class="weather-info">
+            <h2 class="display-3">{{ weather_data['temperature'] }}°C</h2>
+            <img src="http://openweathermap.org/img/wn/{{ weather_data['icon'] }}@2x.png" alt="Weather Icon" class="mb-3">
+            <p class="lead text-capitalize">{{ weather_data['description'] }}</p>
+
+            <div class="d-flex justify-content-between mt-4">
+                <div>
+                    <i class="bi bi-droplet text-primary fs-3"></i>
+                    <p><strong>Humidity:</strong> {{ weather_data['humidity'] }}%</p>
+                </div>
+                <div>
+                    <i class="bi bi-wind text-primary fs-3"></i>
+                    <p><strong>Wind Speed:</strong> {{ weather_data['wind_speed'] }} m/s</p>
+                </div>
+            </div>
+            <div class="mt-4">
+                <p><strong>Feels Like:</strong> {{ weather_data['feels_like'] }}°C</p>
+                <p><strong>Sunrise:</strong> {{ weather_data['sunrise'] }}</p>
+                <p><strong>Sunset:</strong> {{ weather_data['sunset'] }}</p>
+            </div>
+        </div>
+        {% else %}
+        <p class="text-muted">Please enter a city name to get weather information.</p>
+        {% endif %}
+    </div>
+
+
+    <!-- About Section -->
+    <div class="about-section my-5 p-4 rounded text-center" style="background-color: rgba(255, 255, 255, 0.8);">
+        <h2>About the Weather App</h2>
+        <p class="lead">
+            This Weather App provides real-time weather data for any city. It uses the OpenWeather API to fetch data like temperature, humidity, and more.
+        </p>
+        <h4>Technologies Used:</h4>
+        <ul>
+            <li>Flask (Python Web Framework)</li>
+            <li>OpenWeather API for weather data</li>
+            <li>Bootstrap 5 for responsive design</li>
+            <li>JavaScript for light/dark mode toggle</li>
+            <li>Jinja2 for template rendering</li>
+        </ul>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-4">
+        <p>&copy; 2024 Weather App. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- JavaScript for Mode Toggle -->
+    <script>
+        // Check for saved mode in localStorage
+        const savedMode = localStorage.getItem('mode');
+        if (savedMode) {
+            document.body.classList.add(savedMode);
+            document.getElementById('modeIcon').classList.toggle('bi-moon-fill', savedMode === 'dark-mode');
+            document.getElementById('modeIcon').classList.toggle('bi-sun-fill', savedMode !== 'dark-mode');
+        }
+
+        // Toggle dark/light mode on icon click
+        document.getElementById('modeIcon').addEventListener('click', function () {
+            document.body.classList.toggle('dark-mode');
+            const mode = document.body.classList.contains('dark-mode') ? 'dark-mode' : 'light-mode';
+            this.classList.toggle('bi-moon-fill', mode === 'dark-mode');
+            this.classList.toggle('bi-sun-fill', mode !== 'dark-mode');
+            localStorage.setItem('mode', mode);
+        });
+
+        // Activity Suggestions Function
+        function suggestActivity(weatherData) {
+    const temp = weatherData.temperature;
+    const condition = weatherData.description.toLowerCase();
+    let suggestion;
+
+    // Suggest activity based on the weather description and temperature
+    if (condition.includes('rain')) {
+        suggestion = "How about a cozy indoor activity, like visiting a museum or reading a book?";
+    } else if (condition.includes('snow')) {
+        suggestion = "It's snowing! Perfect for skiing or building a snowman!";
+    } else if (temp > 25) {
+        suggestion = "Perfect for a beach day, picnic, or outdoor sports!";
+    } else if (temp <= 25 && temp >= 15) {
+        suggestion = "Great weather for a walk in the park or a coffee outing!";
+    } else {
+        suggestion = "It's a bit chilly. How about some indoor activities or a hot drink?";
+    }
+
+    // Update the suggestion in the DOM
+    document.getElementById('activitySuggestion').textContent = suggestion;
+}
+        // Mock weather data for testing
+        const weatherData = {
+            temperature: 30,
+            description: 'clear sky'
+        };
+
+        suggestActivity(weatherData);
+    </script>
+
+</body>
+</html>
